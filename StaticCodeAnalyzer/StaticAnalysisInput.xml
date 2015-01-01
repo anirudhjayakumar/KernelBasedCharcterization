@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticAnalysis>
+	<CriticalVar>
+		<Var name="nx" file="/home/anirudhj/smg2000/test/smg2000.c" line="24" />
+		<Var name="ny" file="/home/anirudhj/smg2000/test/smg2000.c" line="24" />
+		<Var name="nz" file="/home/anirudhj/smg2000/test/smg2000.c" line="24" />
+		<Var name="P" file="/home/anirudhj/smg2000/test/smg2000.c" line="44" />
+	</CriticalVar>
+</StaticAnalysis>

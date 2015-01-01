@@ -1,0 +1,4 @@
+This is the runtime prediction engine. This takes as input an xml which is an augmented version of the static analyzers
+output. It prints the min,max range and also logs individual phase(loop, function) ranges in an output.xml
+
+The makefiles are not generic and may need some tweaking. 

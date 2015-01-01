@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<ProgramBlocks>
+    <Block id="0" timeSec="146.5" predMax="3121." predMin="3117." line="24" varList="" type="func">
+        <Block id="1" timeSec="2.662" predMax="3.744" predMin="2.750" line="65" varList="" type="func">
+            <Block id="2" timeSec="2.662" predMax="3.744" predMin="2.750" line="56" varList="0," type="loop" />
+        </Block>
+        <Block id="3" timeSec="5.906" predMax="10" predMin="10" line="72" varList="" type="func">
+            <Block id="4" timeSec="6.543" predMax="0" predMin="0" line="52" varList="0," type="loop" />
+            <Block id="5" timeSec="6.543" predMax="0" predMin="0" line="172" varList="" type="MPI_LATENCY" />
+            <Block id="6" timeSec="6.543" predMax="0" predMin="0" line="210" varList="" type="MPI_ALLREDUCE" />
+        </Block>
+        <Block id="7" timeSec="6.543" predMax="1756" predMin="1756" line="99" varList="" type="func">
+            <Block id="8" timeSec="6.543" predMax="0" predMin="0" line="56" varList="0," type="loop" />
+            <Block id="9" timeSec="6.543" predMax="0" predMin="0" line="317" varList="" type="MPI_ALLREDUCE" />
+            <Block id="10" timeSec="6.543" predMax="0" predMin="0" line="386" varList="" type="MPI_ALLREDUCE" />
+        </Block>
+        <Block id="11" timeSec="6.543" predMax="1236" predMin="1236" line="72" varList="" type="func">
+            <Block id="12" timeSec="6.543" predMax="0" predMin="0" line="52" varList="0," type="loop" />
+            <Block id="13" timeSec="6.543" predMax="0" predMin="0" line="172" varList="" type="MPI_LATENCY" />
+            <Block id="14" timeSec="6.543" predMax="0" predMin="0" line="210" varList="" type="MPI_ALLREDUCE" />
+        </Block>
+        <Block id="15" timeSec="36.25" predMax="14.65" predMin="11.15" line="105" varList="" type="func">
+            <Block id="16" timeSec="9.375" predMax="13.18" predMin="9.686" line="54" varList="0," type="loop" />
+            <Block id="17" timeSec="3.718" predMax="0" predMin="0" line="266" varList="" type="MPI_LATENCY" />
+            <Block id="18" timeSec="3.25" predMax="0" predMin="0" line="266" varList="" type="MPI_LATENCY" />
+            <Block id="19" timeSec="2.281" predMax="0" predMin="0" line="266" varList="" type="MPI_LATENCY" />
+            <Block id="20" timeSec="1.562" predMax="0" predMin="0" line="266" varList="" type="MPI_LATENCY" />
+            <Block id="21" timeSec="14.59" predMax="0" predMin="0" line="186" varList="" type="MPI_ALLREDUCE" />
+        </Block>
+        <Block id="22" timeSec="2.771" predMax="2.662" predMin="2.662" line="87" varList="" type="func">
+            <Block id="23" timeSec="0.109" predMax="0" predMin="0" line="172" varList="" type="MPI_LATENCY" />
+            <Block id="24" timeSec="2.625" predMax="2.625" predMin="2.625" line="52" varList="1," type="loop" />
+        </Block>
+        <Block id="25" timeSec="15.62" predMax="15.62" predMin="15.62" line="123" varList="" type="func">
+            <Block id="26" timeSec="15" predMax="15" predMin="15" line="52" varList="1," type="loop" />
+        </Block>
+        <Block id="27" timeSec="2.346" predMax="2.280" predMin="2.280" line="117" varList="" type="func">
+            <Block id="28" timeSec="0.065" predMax="0" predMin="0" line="172" varList="" type="MPI_LATENCY" />
+            <Block id="29" timeSec="2.25" predMax="2.25" predMin="2.25" line="52" varList="1," type="loop" />
+        </Block>
+        <Block id="30" timeSec="2.187" predMax="1.826" predMin="1.826" line="93" varList="" type="func">
+            <Block id="31" timeSec="1.75" predMax="1.75" predMin="1.75" line="52" varList="1," type="loop" />
+            <Block id="32" timeSec="0.195" predMax="0" predMin="0" line="172" varList="" type="MPI_LATENCY" />
+            <Block id="33" timeSec="0.093" predMax="0" predMin="0" line="172" varList="" type="MPI_LATENCY" />
+            <Block id="34" timeSec="0.071" predMax="0" predMin="0" line="172" varList="" type="MPI_LATENCY" />
+        </Block>
+    </Block>
+</ProgramBlocks>

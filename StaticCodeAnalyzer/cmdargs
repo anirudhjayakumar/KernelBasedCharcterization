@@ -1,0 +1,1 @@
+-rose:F90 -I/home/anirudhj/openmpi/include -I/usr/include -rose:verbose 0 -rose:astMerge -rose:astMergeCommandFile /tmp/commandFile  -rose:skipfinalCompileStep -rose:skip_syntax_check

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<StaticAnalysis>
+    <LoopNesting>
+        <Loop file="/home/anirudhj/smg2000/test/smg2000.c" line="381" depth="1" varComb="5" />
+        <Loop file="/home/anirudhj/smg2000/test/smg2000.c" line="413" depth="1" varComb="5" />
+        <Loop file="/home/anirudhj/smg2000/test/smg2000.c" line="448" depth="1" varComb="5" />
+        <Loop file="/home/anirudhj/smg2000/test/smg2000.c" line="463" depth="1" varComb="5" />
+    </LoopNesting>
+    <CriticalVar>
+        <Var id="0" postfixExpr="0" org="nx" />
+        <Var id="1" postfixExpr="1" org="ny" />
+        <Var id="2" postfixExpr="2" org="nz" />
+        <Var id="3" postfixExpr="3" org="P" />
+        <Var id="4" postfixExpr="0" org="nx" />
+        <Var id="5" postfixExpr="0,;0,1,MUL,;0,1,MUL,2,MUL," org="nx" />
+        <Var id="6" postfixExpr="0" org="nx" />
+        <Var id="7" postfixExpr="6" org="nx" />
+        <Var id="8" postfixExpr="6" org="nx" />
+    </CriticalVar>
+    <MPICalls>
+        <Call file="/home/anirudhj/smg2000/utilities/timing.c" line="419" sizeDepVars="" type="MPI_ALLREDUCE" loopDepVars="" />
+        <Call file="/home/anirudhj/smg2000/utilities/timing.c" line="421" sizeDepVars="" type="MPI_ALLREDUCE" loopDepVars="" />
+        <Call file="/home/anirudhj/smg2000/struct_mv/struct_innerprod.c" line="107" sizeDepVars="" type="MPI_ALLREDUCE" loopDepVars="" />
+    </MPICalls>
+</StaticAnalysis>
