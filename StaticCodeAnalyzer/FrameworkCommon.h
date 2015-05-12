@@ -61,10 +61,22 @@ public:
     typedef typename Container::iterator iterator;
     typedef typename Container::const_iterator const_iterator;
 
-    iterator begin() { return this->c.begin(); }
-    iterator end() { return this->c.end(); }
-    const_iterator begin() const { return this->c.begin(); }
-    const_iterator end() const { return this->c.end(); }
+    iterator begin()
+    {
+        return this->c.begin();
+    }
+    iterator end()
+    {
+        return this->c.end();
+    }
+    const_iterator begin() const
+    {
+        return this->c.begin();
+    }
+    const_iterator end() const
+    {
+        return this->c.end();
+    }
 };
 
 
@@ -73,7 +85,7 @@ std::string GetFileNameFromPath(const std::string &strFileName);
 bool  IsAllTrue(const std::vector<bool> &vecs);
 bool  IsAllFalse(const std::vector<bool> &vecs);
 void  NextPermutation(std::vector< int >  &vecblockIndex,
-		const std::vector< int >  &vecblockSize);
+                      const std::vector< int >  &vecblockSize);
 }
 
 #endif /* FRAMEWORKCOMMON_H_ */

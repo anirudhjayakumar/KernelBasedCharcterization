@@ -14,27 +14,29 @@
 class SgNode;
 class SgProject;
 
-namespace StaticAnlysis {
+namespace StaticAnlysis
+{
 
 struct SLoopDependencyDesc
 {
 
-	bool bDependent;
-	VecCriticalVars vecDepndtVars;
+    bool bDependent;
+    VecCriticalVars vecDepndtVars;
 };
 
-class CLoopDependencyResolver {
+class CLoopDependencyResolver
+{
 public:
-	CLoopDependencyResolver();
-	virtual ~CLoopDependencyResolver();
-	ReturnCode Initialize(SgProject *pProject, const VecCriticalVars &vecVars);
-	ReturnCode ResolveDependency(SgNode *node, SLoopDependencyDesc &loopDepDesc);
+    CLoopDependencyResolver();
+    virtual ~CLoopDependencyResolver();
+    ReturnCode Initialize(SgProject *pProject, const VecCriticalVars &vecVars);
+    ReturnCode ResolveDependency(SgNode *node, SLoopDependencyDesc &loopDepDesc);
 private:
-	SgProject *m_pProject;
-	VecCriticalVars m_vecVars;
+    SgProject *m_pProject;
+    VecCriticalVars m_vecVars;
 private:
-	ReturnCode 		GetReferenceVarList(SgNode *node, VecCriticalVars &refVars);
-	VecCriticalVars MatchRefListToCriticalVars(VecCriticalVars &refVars, VecCriticalVars &criticalVars);
+    ReturnCode 		GetReferenceVarList(SgNode *node, VecCriticalVars &refVars);
+    VecCriticalVars MatchRefListToCriticalVars(VecCriticalVars &refVars, VecCriticalVars &criticalVars);
 
 };
 

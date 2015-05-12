@@ -17,7 +17,8 @@
 class SgFunctionDeclaration;
 class SgNode;
 
-namespace StaticAnlysis {
+namespace StaticAnlysis
+{
 struct SCriticalVariableDef;
 
 typedef boost::shared_ptr<SCriticalVariableDef>  SCriticalVariableDefPtr;
@@ -26,42 +27,42 @@ typedef std::vector<VecCriticalVars>      VecVecCriticalVars;
 
 struct SCriticalVariableDef
 {
-	std::string sVariableName;
-	std::string sDefinitionFile; // the file where the variable is defined
-	int		    nDefinitionLine; // the line where the variable is defined
-	int         nID; //unique identifier
-	std::string sExprStr; //the postfix representation of the expression
-	SCriticalVariableDefPtr pOrignal; //used for dependent vars to point to the original vars
-	bool operator==( const SCriticalVariableDef &othr) const
-	{
-		if (sVariableName == othr.sVariableName && sDefinitionFile == othr.sDefinitionFile \
-				                        &&  nDefinitionLine == othr.nDefinitionLine)
-			return true;
-		else
-			return false;
-	}
-	bool operator<( const SCriticalVariableDef &otr) const
-	{
-		if (this->sVariableName != otr.sVariableName)
-			return this->sVariableName < otr.sVariableName;
-		else if (this->sDefinitionFile != otr.sDefinitionFile)
-			return this->sDefinitionFile < otr.sDefinitionFile;
-		else if (this->nDefinitionLine != otr.nDefinitionLine)
-			return this->nDefinitionLine < otr.nDefinitionLine;
-		else
-			return false;
-	}
-	void Print()
-	{
-		std::cout << "Name: " << sVariableName <<  std::endl;
-		std::cout << "File: " << sDefinitionFile <<  std::endl;
-		std::cout << "Line: " << nDefinitionLine <<  std::endl;
+    std::string sVariableName;
+    std::string sDefinitionFile; // the file where the variable is defined
+    int		    nDefinitionLine; // the line where the variable is defined
+    int         nID; //unique identifier
+    std::string sExprStr; //the postfix representation of the expression
+    SCriticalVariableDefPtr pOrignal; //used for dependent vars to point to the original vars
+    bool operator==( const SCriticalVariableDef &othr) const
+    {
+        if (sVariableName == othr.sVariableName && sDefinitionFile == othr.sDefinitionFile \
+                &&  nDefinitionLine == othr.nDefinitionLine)
+            return true;
+        else
+            return false;
+    }
+    bool operator<( const SCriticalVariableDef &otr) const
+    {
+        if (this->sVariableName != otr.sVariableName)
+            return this->sVariableName < otr.sVariableName;
+        else if (this->sDefinitionFile != otr.sDefinitionFile)
+            return this->sDefinitionFile < otr.sDefinitionFile;
+        else if (this->nDefinitionLine != otr.nDefinitionLine)
+            return this->nDefinitionLine < otr.nDefinitionLine;
+        else
+            return false;
+    }
+    void Print()
+    {
+        std::cout << "Name: " << sVariableName <<  std::endl;
+        std::cout << "File: " << sDefinitionFile <<  std::endl;
+        std::cout << "Line: " << nDefinitionLine <<  std::endl;
 
-	}
-	SCriticalVariableDef()
-	{
-		sVariableName = sDefinitionFile = sExprStr = "";
-	}
+    }
+    SCriticalVariableDef()
+    {
+        sVariableName = sDefinitionFile = sExprStr = "";
+    }
 };
 
 void PrintVecCriticalVar(VecCriticalVars &vars);
@@ -69,9 +70,9 @@ bool Contains(const VecCriticalVars &vars, const SCriticalVariableDefPtr &ptr, i
 
 struct SLoopNestingDef
 {
-	int         nNestDepth;
-	std::string sFile;
-	int         nLine;
+    int         nNestDepth;
+    std::string sFile;
+    int         nLine;
 };
 
 typedef std::vector<SLoopNestingDef> VecLoopNestingDef;
@@ -83,17 +84,17 @@ bool isMPICall(std::string sName);
 
 struct SFunctionCallDesc
 {
-	int         nLine;
-	std::string sFile;
-	SgFunctionDeclaration *defPtr;
-	bool operator==( const SFunctionCallDesc &othr) const
-	{
-		if (nLine == othr.nLine && sFile == othr.sFile \
-										&&  defPtr == othr.defPtr)
-			return true;
-		else
-			return false;
-	}
+    int         nLine;
+    std::string sFile;
+    SgFunctionDeclaration *defPtr;
+    bool operator==( const SFunctionCallDesc &othr) const
+    {
+        if (nLine == othr.nLine && sFile == othr.sFile \
+                &&  defPtr == othr.defPtr)
+            return true;
+        else
+            return false;
+    }
 };
 
 typedef boost::shared_ptr<SFunctionCallDesc>  SFunctionCallDefPtr;
@@ -108,10 +109,10 @@ typedef std::vector<VecSgNodes> VecVecSgNodes;
 
 struct SMPICallDesc
 {
-	int					nLine;
-	std::string     	sFile;
-	VecVecCriticalVars  loopDep;
-	VecCriticalVars 	sizeDep;
+    int					nLine;
+    std::string     	sFile;
+    VecVecCriticalVars  loopDep;
+    VecCriticalVars 	sizeDep;
     std::string         sType;
 };
 
@@ -121,11 +122,12 @@ struct SMPICallDesc
 	X(e_C99, 		  	"C99") \
 	X(e_FORTRAN77, 		"FORTRAN77") \
 
-enum ELanguage {
+enum ELanguage
+{
 #define X(a,b) a,
-	LANGUAGE_SUPPORT_TABLE
+    LANGUAGE_SUPPORT_TABLE
 #undef X
-	e_LANG_SUPPORT_COUNT
+    e_LANG_SUPPORT_COUNT
 };
 
 #define X(a,b) b,
@@ -155,11 +157,11 @@ public:
     int        FortranCommonBlockLineNo(const int nLineNo, const std::string &file);
     std::string GetProgramName()
     {
-    	return m_sProgramName;
+        return m_sProgramName;
     }
     ELanguage  GetLanguageType()
     {
-    	return m_eLanguage;
+        return m_eLanguage;
     }
 };
 

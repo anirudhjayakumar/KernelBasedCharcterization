@@ -22,7 +22,8 @@
 class TiXmlDocument;
 class TiXmlElement;
 
-namespace Prediction {
+namespace Prediction
+{
 
 
 // EPredictionModels are models based on problem sizes. The input problem size for
@@ -41,11 +42,12 @@ namespace Prediction {
 	X(e_PSM_logN_NN, 		"LogN_NN",  		3,  3, LSM_LogN_NN) \
 	X(e_PSM_GTOrder3, 		"GTOrder3",  		4,  2, LSM_GTOrder3)
 
-enum EPredictionModels {
+enum EPredictionModels
+{
 #define X(a,b,c,d,e) a,
-	PREDICTION_MODEL_TABLE
+    PREDICTION_MODEL_TABLE
 #undef X
-	e_ModelCount
+    e_ModelCount
 };
 
 #define X(a,b,c,d,e) b,
@@ -63,11 +65,11 @@ const int mapPredictionModelPermuatations[] = { PREDICTION_MODEL_TABLE };
 
 struct SMPIProcedureCall
 {
-	EMPIBenchmark eType;
-	int           id;
-	double        dTime;
-	VecStrings    vecSizeDepVars;
-	VecVecStrings loopDepVars;
+    EMPIBenchmark eType;
+    int           id;
+    double        dTime;
+    VecStrings    vecSizeDepVars;
+    VecVecStrings loopDepVars;
 
 };
 
@@ -83,11 +85,12 @@ struct SMPIProcedureCall
 	X(e_BlockMPI_AllReduce, 			"MPI_ALLREDUCE") \
 	X(e_BlockMPI_AsyncRecv, 			"MPI_ASYNCRECV")
 
-enum EBlockType {
+enum EBlockType
+{
 #define X(a,b) a,
-	BLOCK_TYPE_TABLE
+    BLOCK_TYPE_TABLE
 #undef X
-	e_BlockCount
+    e_BlockCount
 };
 
 #define X(a,b) b,
@@ -100,27 +103,27 @@ typedef boost::shared_ptr<SBasicBlock>  SBasicBlockPtr;
 typedef std::vector<SBasicBlockPtr> VecSBasicBlock;
 struct SBasicBlock
 {
-	EBlockType eType;
-	double timeSec;
-	double predTimeMax;
-	double predTimeMin;
-	int line;
-	std::string sFile;
-	int id;
-	std::vector<int> varList;
-	VecSBasicBlock childBlocks;
-	SBasicBlockPtr parent;
-	double dKernelTime;
-	int nCalls;
+    EBlockType eType;
+    double timeSec;
+    double predTimeMax;
+    double predTimeMin;
+    int line;
+    std::string sFile;
+    int id;
+    std::vector<int> varList;
+    VecSBasicBlock childBlocks;
+    SBasicBlockPtr parent;
+    double dKernelTime;
+    int nCalls;
 };
 
 struct SProblemSizeDef
 {
-	std::string sVarName;
-	double      dDebugVal;
-	double      dPredVal;
-	bool        bLoadBal;
-	int         id;
+    std::string sVarName;
+    double      dDebugVal;
+    double      dPredVal;
+    bool        bLoadBal;
+    int         id;
 };
 
 typedef boost::shared_ptr<SProblemSizeDef>  SProblemSizeDefPtr;
@@ -135,64 +138,64 @@ typedef std::tuple<EPredictionModels,double> RuntimeInfo;// model, predicted exe
 
 struct SLoopDesc
 {
-	double dTimeSec;
-	int    id;
-	int    nNestingDepth;
-	VecVecInts vDepVars;
+    double dTimeSec;
+    int    id;
+    int    nNestingDepth;
+    VecVecInts vDepVars;
 };
 
 typedef std::vector<SLoopDesc> VecLoopDesc;
 
 typedef void (*LoopScaleMethod)(std::vector<RuntimeInfo> &runtimeInfo, double ,  \
-		                const VecInts &, int, int, std::map<int,double>&,std::map<int,double>&);
+                                const VecInts &, int, int, std::map<int,double>&,std::map<int,double>&);
 
 
 struct SResultStruct
 {
-	std::pair<int,int> pairMinMaxRuntimes;
-	int 			   nAvgRuntime;
-	int 			   nMedianRuntime;
-	int 			   nMidQuartileAvg;
-	void Print();
+    std::pair<int,int> pairMinMaxRuntimes;
+    int 			   nAvgRuntime;
+    int 			   nMedianRuntime;
+    int 			   nMidQuartileAvg;
+    void Print();
 };
 
 class PredictionEngine
 {
 private:
-	std::string   					      		m_sProgramName;
-	std::map<std::string,SProblemSizeDefPtr> 	m_mapVarNameToDesc;
-	int 								  		m_nDebugProc;
-	int                                   		m_nPredProc;
-	CMPIBenchmarkAnalysis 						m_oMPIAnalysis;
-	double                                      m_nConstTime;
-	std::map<int,std::vector<std::string > >    m_mapIDtoPostfixExprs;
-	std::map<int,double >         				m_mapIDtoDebugVals;
-	std::map<int,double >         				m_mapIDtoProdVals;
-	bool                                        m_bDivWithProc;
-	VecSBasicBlock                              m_vecTopLevelBasicBlocks;
+    std::string   					      		m_sProgramName;
+    std::map<std::string,SProblemSizeDefPtr> 	m_mapVarNameToDesc;
+    int 								  		m_nDebugProc;
+    int                                   		m_nPredProc;
+    CMPIBenchmarkAnalysis 						m_oMPIAnalysis;
+    double                                      m_nConstTime;
+    std::map<int,std::vector<std::string > >    m_mapIDtoPostfixExprs;
+    std::map<int,double >         				m_mapIDtoDebugVals;
+    std::map<int,double >         				m_mapIDtoProdVals;
+    bool                                        m_bDivWithProc;
+    VecSBasicBlock                              m_vecTopLevelBasicBlocks;
     RInside                                    *m_RInstance;
 
 
 public:
-	PredictionEngine();
-	virtual ~PredictionEngine();
-	ReturnCode 						Initialize		(const std::string &sProgramConfigs);
-	ReturnCode                    	ComputeRuntime	(SResultStruct &sResult);
-	static EMPIBenchmark BasicBlockToMPIEnum(EBlockType eType);
-	void PrintBlock(const std::string &file);
-	std::string CleanXML(const std::string &sProgramConfigs);
+    PredictionEngine();
+    virtual ~PredictionEngine();
+    ReturnCode 						Initialize		(const std::string &sProgramConfigs);
+    ReturnCode                    	ComputeRuntime	(SResultStruct &sResult);
+    static EMPIBenchmark BasicBlockToMPIEnum(EBlockType eType);
+    void PrintBlock(const std::string &file);
+    std::string CleanXML(const std::string &sProgramConfigs);
 private:
-	std::string						PerformanceModelsString(EPredictionModels eModel);
-	std::vector< RuntimeInfo >      CalculatePredictionsForLoop(const SLoopDesc &loopDesc);
-	std::vector< double >           CalculatePredictionsForMPI(const SMPIProcedureCall &mpiDesc);
-	ReturnCode                      ResolvePostFixExpression(std::map<int,std::vector<std::string>>::iterator itr \
-																	, double &prod, double &debug, unsigned index);
-	bool                            CanExprBeEvaluated(const std::string &sExpr,std::map<int,std::vector<bool>> \
-																				&mapIDtoStatus);
-	ReturnCode                      ReadBasicBlocks(TiXmlElement *pBasicBlock, SBasicBlockPtr blockPtr);
-	std::pair<double, double>       EvaluateBasicBlock(SBasicBlockPtr blockPtr);
-	void CreateBlockXml(TiXmlElement *pElement, SBasicBlockPtr ptr);
-	void BlockEdit(TiXmlElement *pElement, int &counter);
+    std::string						PerformanceModelsString(EPredictionModels eModel);
+    std::vector< RuntimeInfo >      CalculatePredictionsForLoop(const SLoopDesc &loopDesc);
+    std::vector< double >           CalculatePredictionsForMPI(const SMPIProcedureCall &mpiDesc);
+    ReturnCode                      ResolvePostFixExpression(std::map<int,std::vector<std::string>>::iterator itr \
+            , double &prod, double &debug, unsigned index);
+    bool                            CanExprBeEvaluated(const std::string &sExpr,std::map<int,std::vector<bool>> \
+            &mapIDtoStatus);
+    ReturnCode                      ReadBasicBlocks(TiXmlElement *pBasicBlock, SBasicBlockPtr blockPtr);
+    std::pair<double, double>       EvaluateBasicBlock(SBasicBlockPtr blockPtr);
+    void CreateBlockXml(TiXmlElement *pElement, SBasicBlockPtr ptr);
+    void BlockEdit(TiXmlElement *pElement, int &counter);
 };
 }
 #endif /* PREDICTIONENGINE_H_ */

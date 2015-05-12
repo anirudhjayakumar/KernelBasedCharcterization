@@ -19,30 +19,32 @@ class SgNode;
 class SgStatement;
 class SgVarRefExp;
 typedef std::vector<SgNode*> NodeQuerySynthesizedAttributeType;
-namespace StaticAnlysis {
+namespace StaticAnlysis
+{
 
 
 
-class CVariableDependencyFinder {
+class CVariableDependencyFinder
+{
 public:
-	CVariableDependencyFinder();
-	virtual ~CVariableDependencyFinder();
-	ReturnCode   Initialize(SgProject *project, const VecCriticalVars & vars);
-	ReturnCode   FindDependencies();
-	void         Result(VecCriticalVars &vars);
-	static std::set<SgVarRefExp *> GetAssociatedCriticalVarRefs(SgStatement * pRefStatement, \
-			NodeQuerySynthesizedAttributeType &allFunCalls, SCriticalVariableDefPtr &pVarRef);
+    CVariableDependencyFinder();
+    virtual ~CVariableDependencyFinder();
+    ReturnCode   Initialize(SgProject *project, const VecCriticalVars & vars);
+    ReturnCode   FindDependencies();
+    void         Result(VecCriticalVars &vars);
+    static std::set<SgVarRefExp *> GetAssociatedCriticalVarRefs(SgStatement * pRefStatement, \
+            NodeQuerySynthesizedAttributeType &allFunCalls, SCriticalVariableDefPtr &pVarRef);
 private:
-	VecCriticalVars m_dependencyList;
-	GARLUTILS::iterable_queue<SCriticalVariableDefPtr> searchQueue;
-	std::set<SgStatement*> m_vecCriticalStmts;
-	SgProject *m_pProject;
-	int       m_nIDCounter;
+    VecCriticalVars m_dependencyList;
+    GARLUTILS::iterable_queue<SCriticalVariableDefPtr> searchQueue;
+    std::set<SgStatement*> m_vecCriticalStmts;
+    SgProject *m_pProject;
+    int       m_nIDCounter;
 private:
-	// looks into dependency list and queue for the presence of pVar
-	bool isVariableAlreadyConsidered(SCriticalVariableDefPtr pVar, SCriticalVariableDefPtr &ptr);
-	bool CheckCondition(SgNode *node, int &type);
-	std::string ConvertToPostFix(SgNode * node);
+    // looks into dependency list and queue for the presence of pVar
+    bool isVariableAlreadyConsidered(SCriticalVariableDefPtr pVar, SCriticalVariableDefPtr &ptr);
+    bool CheckCondition(SgNode *node, int &type);
+    std::string ConvertToPostFix(SgNode * node);
 
 };
 

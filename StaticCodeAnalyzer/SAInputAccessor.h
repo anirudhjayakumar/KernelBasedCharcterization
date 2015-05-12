@@ -12,19 +12,21 @@
 #include <vector>
 #include "FrameworkCommon.h"
 #include "SACommon.h"
-namespace StaticAnlysis {
+namespace StaticAnlysis
+{
 
 
 
-class CSAInputAccessor {
+class CSAInputAccessor
+{
 private:
-	VecCriticalVars m_vecCriticalVars;
+    VecCriticalVars m_vecCriticalVars;
 public:
-	CSAInputAccessor();
-	virtual ~CSAInputAccessor();
-	ReturnCode  Initialize(const std::string &sConfigFile);
+    CSAInputAccessor();
+    virtual ~CSAInputAccessor();
+    ReturnCode  Initialize(const std::string &sConfigFile);
 
-	VecCriticalVars  EnumerateCriticalVariables();
+    VecCriticalVars  EnumerateCriticalVariables();
 
 };
 

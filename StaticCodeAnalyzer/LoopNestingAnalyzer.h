@@ -17,19 +17,21 @@ class SgProject;
 
 
 
-namespace StaticAnlysis {
+namespace StaticAnlysis
+{
 class CLoopNestingAnalyserImpl;
 typedef boost::shared_ptr<CLoopNestingAnalyserImpl> ImplPtr;
 
-class CLoopNestingAnalyzer {
+class CLoopNestingAnalyzer
+{
 public:
-	CLoopNestingAnalyzer();
-	virtual ~CLoopNestingAnalyzer();
-	ReturnCode 			StartAnalysis(SgProject *pProject, VecCriticalVars &vecVars);
-	ReturnCode          GetResults(VecLoopNestVarDep &vecResults,std::vector<SMPICallDesc> &mpiDescs);
+    CLoopNestingAnalyzer();
+    virtual ~CLoopNestingAnalyzer();
+    ReturnCode 			StartAnalysis(SgProject *pProject, VecCriticalVars &vecVars);
+    ReturnCode          GetResults(VecLoopNestVarDep &vecResults,std::vector<SMPICallDesc> &mpiDescs);
 
 private:
-	ImplPtr m_pImpl_;
+    ImplPtr m_pImpl_;
 
 };
 
